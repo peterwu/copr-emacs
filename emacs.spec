@@ -2,7 +2,7 @@
 %global        _hardened_build 1
 %global        build_timestamp %(date +"%Y%m%d")
 
-%global        git_revision 8ace7700b93c6c0835ddac6633a7ec07daf56225
+%global        git_revision ddff5d3d879d23f0684b8abe7d923fce4f86ec2e
 %global        git_revision_short %(echo %{git_revision} | head -c 7)
 
 Summary:       GNU Emacs text editor
@@ -177,7 +177,8 @@ cd ..
 # Build binary without X support
 %__mkdir build-nox && cd build-nox
 %__ln_s ../configure .
-%configure --with-x=no --with-modules --with-json
+%configure --with-x=no --with-modules --with-json --with-x-toolkit=no --without-xft \
+	   --without-lcms2 --without-rsvg --enable-link-time-optimization
 %{setarch} %make_build
 cd ..
 
@@ -347,6 +348,9 @@ echo "(setq source-directory \"%{_datadir}/emacs/%{version}/\")" \
 %dir %{_datadir}/emacs/site-lisp/site-start.d
 
 %changelog
+* Thu Dec 17 05:13:55 PM EST 2020 Peter Wu
+- added more config switches to the nox build, with credits to AUR:emacs-git
+- git commit ddff5d3d879d23f0684b8abe7d923fce4f86ec2e
 * Thu Dec 10 2020 Peter Wu
 - inherited from emacs.spec from Fedora build
 - git commit 8ace7700b93c6c0835ddac6633a7ec07daf56225

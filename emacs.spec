@@ -2,7 +2,7 @@
 %global        _hardened_build 1
 %global        build_timestamp %(date +"%Y%m%d")
 
-%global        git_revision 87f6e937995c433825173fb0473a801791d5beac
+%global        git_revision e417e87f7ac5b19e84d6767af35e7dec65e77492
 %global        git_revision_short %(echo %{git_revision} | head -c 7)
 
 Summary:       GNU Emacs text editor
@@ -54,7 +54,6 @@ BuildRequires: libacl-devel
 BuildRequires: harfbuzz-devel
 BuildRequires: jansson-devel
 BuildRequires: systemd-devel
-BuildRequires: libgccjit-devel
 
 BuildRequires: gtk3-devel
 BuildRequires: webkit2gtk3-devel
@@ -170,9 +169,9 @@ LDFLAGS=-Wl,-z,relro;  export LDFLAGS;
 %configure --with-dbus --with-gif --with-jpeg --with-png --with-rsvg --without-xaw3d \
 	   --with-tiff --without-xft --with-xpm --with-x-toolkit=gtk3 --with-gpm=no \
 	   --with-xwidgets --with-modules --with-harfbuzz --with-cairo --with-json \
-	   --with-pgtk  --with-nativecomp --enable-link-time-optimization
+	   --enable-link-time-optimization
 
-%make_build NATIVE_FULL_AOT=1 bootstrap
+%__make bootstrap
 %{setarch} %make_build
 cd ..
 
@@ -180,8 +179,7 @@ cd ..
 %__mkdir build-nox && cd build-nox
 %__ln_s ../configure .
 %configure --with-x=no --with-modules --with-json --with-x-toolkit=no --without-xft \
-	   --without-lcms2 --without-rsvg --with-nativecomp --enable-link-time-optimization
-%make_build NATIVE_FULL_AOT=1 bootstrap
+	   --without-lcms2 --without-rsvg --enable-link-time-optimization
 %{setarch} %make_build
 cd ..
 
@@ -341,7 +339,6 @@ echo "(setq source-directory \"%{_datadir}/emacs/%{version}/\")" \
 %{_datadir}/emacs/%{version}/etc
 %{_datadir}/emacs/%{version}/site-lisp
 %{_libexecdir}/emacs
-%{_libdir}/emacs/%{version}
 %{_userunitdir}/emacs.service
 %attr(0644,root,root) %config %{_datadir}/emacs/site-lisp/site-start.el
 %{pkgconfig}/emacs.pc
@@ -353,7 +350,8 @@ echo "(setq source-directory \"%{_datadir}/emacs/%{version}/\")" \
 
 %changelog
 * Fri Dec 18 02:08:58 PM EST 2020 Peter Wu
-- native comp support for nox
+- roll back native comp support
+- git commit e417e87f7ac5b19e84d6767af35e7dec65e77492
 * Thu Dec 17 05:58:05 PM EST 2020 Peter Wu
 - native comp support
 - git commit 87f6e937995c433825173fb0473a801791d5beac

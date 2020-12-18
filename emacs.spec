@@ -180,7 +180,8 @@ cd ..
 %__mkdir build-nox && cd build-nox
 %__ln_s ../configure .
 %configure --with-x=no --with-modules --with-json --with-x-toolkit=no --without-xft \
-	   --without-lcms2 --without-rsvg --enable-link-time-optimization
+	   --without-lcms2 --without-rsvg ---with-nativecomp -enable-link-time-optimization
+%make_build NATIVE_FULL_AOT=1 bootstrap
 %{setarch} %make_build
 cd ..
 

@@ -2,7 +2,7 @@
 %global        _hardened_build 1
 %global        build_timestamp %(date +"%Y%m%d")
 
-%global        git_revision ddff5d3d879d23f0684b8abe7d923fce4f86ec2e
+%global        git_revision 87f6e937995c433825173fb0473a801791d5beac
 %global        git_revision_short %(echo %{git_revision} | head -c 7)
 
 Summary:       GNU Emacs text editor
@@ -54,6 +54,7 @@ BuildRequires: libacl-devel
 BuildRequires: harfbuzz-devel
 BuildRequires: jansson-devel
 BuildRequires: systemd-devel
+BuildRequires: libgccjit-devel
 
 BuildRequires: gtk3-devel
 BuildRequires: webkit2gtk3-devel
@@ -169,7 +170,7 @@ LDFLAGS=-Wl,-z,relro;  export LDFLAGS;
 %configure --with-dbus --with-gif --with-jpeg --with-png --with-rsvg \
            --with-tiff --without-xft --with-xpm --with-x-toolkit=gtk3 --with-gpm=no \
            --with-xwidgets --with-modules --with-harfbuzz --with-cairo --with-json \
-           --without-xaw3d --enable-link-time-optimization
+	   --without-xaw3d --with-pgtk --with-nativecomp --enable-link-time-optimization
 %__make bootstrap
 %{setarch} %make_build
 cd ..
@@ -338,6 +339,7 @@ echo "(setq source-directory \"%{_datadir}/emacs/%{version}/\")" \
 %{_datadir}/emacs/%{version}/etc
 %{_datadir}/emacs/%{version}/site-lisp
 %{_libexecdir}/emacs
+%{_libdir}/emacs/%{version}
 %{_userunitdir}/emacs.service
 %attr(0644,root,root) %config %{_datadir}/emacs/site-lisp/site-start.el
 %{pkgconfig}/emacs.pc
@@ -348,6 +350,9 @@ echo "(setq source-directory \"%{_datadir}/emacs/%{version}/\")" \
 %dir %{_datadir}/emacs/site-lisp/site-start.d
 
 %changelog
+* Thu Dec 17 05:58:05 PM EST 2020 Peter Wu
+- native comp support
+- git commit 87f6e937995c433825173fb0473a801791d5beac
 * Thu Dec 17 05:13:55 PM EST 2020 Peter Wu
 - added more config switches to the nox build, with credits to AUR:emacs-git
 - git commit ddff5d3d879d23f0684b8abe7d923fce4f86ec2e

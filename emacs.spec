@@ -180,7 +180,7 @@ cd ..
 %__mkdir build-nox && cd build-nox
 %__ln_s ../configure .
 %configure --with-x=no --with-modules --with-json --with-x-toolkit=no --without-xft \
-	   --without-lcms2 --without-rsvg ---with-nativecomp -enable-link-time-optimization
+	   --without-lcms2 --without-rsvg --with-nativecomp --enable-link-time-optimization
 %make_build NATIVE_FULL_AOT=1 bootstrap
 %{setarch} %make_build
 cd ..
@@ -352,6 +352,8 @@ echo "(setq source-directory \"%{_datadir}/emacs/%{version}/\")" \
 %dir %{_datadir}/emacs/site-lisp/site-start.d
 
 %changelog
+* Fri Dec 18 02:08:58 PM EST 2020 Peter Wu
+- native comp support for nox
 * Thu Dec 17 05:58:05 PM EST 2020 Peter Wu
 - native comp support
 - git commit 87f6e937995c433825173fb0473a801791d5beac

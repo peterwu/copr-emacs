@@ -167,11 +167,12 @@ export CFLAGS="-DMAIL_USE_LOCKF %{build_cflags}"
 
 LDFLAGS=-Wl,-z,relro;  export LDFLAGS;
 
-%configure --with-dbus --with-gif --with-jpeg --with-png --with-rsvg \
-           --with-tiff --without-xft --with-xpm --with-x-toolkit=gtk3 --with-gpm=no \
-           --with-xwidgets --with-modules --with-harfbuzz --with-cairo --with-json \
-	   --without-xaw3d --with-pgtk --with-nativecomp --enable-link-time-optimization
-%__make bootstrap
+%configure --with-dbus --with-gif --with-jpeg --with-png --with-rsvg --without-xaw3d \
+	   --with-tiff --without-xft --with-xpm --with-x-toolkit=gtk3 --with-gpm=no \
+	   --with-xwidgets --with-modules --with-harfbuzz --with-cairo --with-json \
+	   --with-pgtk  --with-nativecomp --enable-link-time-optimization
+
+%make_build NATIVE_FULL_AOT=1 bootstrap
 %{setarch} %make_build
 cd ..
 

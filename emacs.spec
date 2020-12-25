@@ -1,9 +1,11 @@
 # This file is encoded in UTF-8.  -*- coding: utf-8 -*-
 %global        _hardened_build 1
-%global        build_timestamp %(date +"%Y%m%d")
+%global        debug_package %{nil}
+%define        _debugsource_template %{nil}
 
-%global        git_revision e417e87f7ac5b19e84d6767af35e7dec65e77492
+%global        git_revision d63ccde966a561756675b9c84b39c724662c82a8
 %global        git_revision_short %(echo %{git_revision} | head -c 7)
+%global        build_timestamp %(date +"%Y%m%d")
 
 Summary:       GNU Emacs text editor
 Name:          emacs
@@ -349,6 +351,8 @@ echo "(setq source-directory \"%{_datadir}/emacs/%{version}/\")" \
 %dir %{_datadir}/emacs/site-lisp/site-start.d
 
 %changelog
+* Thu Dec 24 09:10:13 PM EST 2020 Peter Wu
+- git commit d63ccde966a561756675b9c84b39c724662c82a8
 * Fri Dec 18 02:08:58 PM EST 2020 Peter Wu
 - roll back native comp support
 - git commit e417e87f7ac5b19e84d6767af35e7dec65e77492

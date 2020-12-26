@@ -3,7 +3,7 @@
 %global        debug_package %{nil}
 %define        _debugsource_template %{nil}
 
-%global        git_revision d63ccde966a561756675b9c84b39c724662c82a8
+%global        git_revision 90e40099debaa876273ae560ed8e66985719dd0c
 %global        git_revision_short %(echo %{git_revision} | head -c 7)
 %global        build_timestamp %(date +"%Y%m%d")
 
@@ -15,6 +15,7 @@ Release:       %{build_timestamp}~%{git_revision_short}%{?dist}
 License:       GPLv3+ and CC0-1.0
 URL:           http://www.gnu.org/software/emacs/
 Source0:       https://github.com/emacs-mirror/emacs/archive/%{git_revision}.tar.gz
+Source1:       emacs.service
 
 BuildRequires: gcc
 BuildRequires: atk-devel
@@ -261,8 +262,8 @@ echo "(setq source-directory \"%{_datadir}/emacs/%{version}/\")" \
 
 # Installing service file
 %__mkdir -p %{buildroot}%{_userunitdir}
-%__mkdir -p %{buildroot}%{_userunitdir}
-%__mv %{buildroot}%{_libdir}/systemd/user/emacs.service %{buildroot}%{_userunitdir}/emacs.service
+%__install -p -m 0644 %SOURCE1 %{buildroot}%{_userunitdir}/emacs.service
+%__rm -f %{buildroot}%{_libdir}/systemd/user/emacs.service
 
 %__rm %{buildroot}%{_datadir}/applications/emacsclient.desktop
 %__rm %{buildroot}%{_includedir}/emacs-module.h
@@ -351,6 +352,9 @@ echo "(setq source-directory \"%{_datadir}/emacs/%{version}/\")" \
 %dir %{_datadir}/emacs/site-lisp/site-start.d
 
 %changelog
+* Fri Dec 25 08:19:00 PM EST 2020 Peter Wu
+- use an emacs.service that has ExecStop
+- git commit 90e40099debaa876273ae560ed8e66985719dd0c
 * Thu Dec 24 09:10:13 PM EST 2020 Peter Wu
 - git commit d63ccde966a561756675b9c84b39c724662c82a8
 * Fri Dec 18 02:08:58 PM EST 2020 Peter Wu

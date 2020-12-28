@@ -3,7 +3,7 @@
 %global        debug_package %{nil}
 %define        _debugsource_template %{nil}
 
-%global        git_revision 90e40099debaa876273ae560ed8e66985719dd0c
+%global        git_revision 5e1416fd0a41c4b7d13d3cd6ecedab48ae7b55b5
 %global        git_revision_short %(echo %{git_revision} | head -c 7)
 %global        build_timestamp %(date +"%Y%m%d")
 
@@ -172,7 +172,8 @@ LDFLAGS=-Wl,-z,relro;  export LDFLAGS;
 %configure --with-dbus --with-gif --with-jpeg --with-png --with-rsvg --without-xaw3d \
 	   --with-tiff --without-xft --with-xpm --with-x-toolkit=gtk3 --with-gpm=no \
 	   --with-xwidgets --with-modules --with-harfbuzz --with-cairo --with-json \
-	   --enable-link-time-optimization
+	   --without-dbus --without-gconf --without-gsettings --without-toolkit-scroll-bars \
+	   --disable-largefile --without-xim --without-sound --enable-link-time-optimization
 
 %__make bootstrap
 %{setarch} %make_build
@@ -182,7 +183,7 @@ cd ..
 %__mkdir build-nox && cd build-nox
 %__ln_s ../configure .
 %configure --with-x=no --with-modules --with-json --with-x-toolkit=no --without-xft \
-	   --without-lcms2 --without-rsvg --enable-link-time-optimization
+	   --without-lcms2 --without-rsvg --disable-largefile --enable-link-time-optimization
 %{setarch} %make_build
 cd ..
 
@@ -352,6 +353,9 @@ echo "(setq source-directory \"%{_datadir}/emacs/%{version}/\")" \
 %dir %{_datadir}/emacs/site-lisp/site-start.d
 
 %changelog
+* Mon Dec 28 10:42:32 EST 2020 Peter Wu
+- adjust build switches to turn off unused features
+- git commit 5e1416fd0a41c4b7d13d3cd6ecedab48ae7b55b5
 * Fri Dec 25 08:19:00 PM EST 2020 Peter Wu
 - use an emacs.service that has ExecStop
 - git commit 90e40099debaa876273ae560ed8e66985719dd0c

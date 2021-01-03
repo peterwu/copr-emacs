@@ -273,7 +273,6 @@ echo "(setq source-directory \"%{_datadir}/emacs/%{version}/\")" \
 %__rm -f %{buildroot}%{_libdir}/systemd/user/emacs.service
 
 %__rm %{buildroot}%{_datadir}/applications/emacsclient.desktop
-%__rm %{buildroot}%{_includedir}/emacs-module.h
 
 #
 # Create file lists

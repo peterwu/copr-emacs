@@ -3,7 +3,7 @@
 %global        debug_package %{nil}
 %define        _debugsource_template %{nil}
 
-%global        git_revision 5e1416fd0a41c4b7d13d3cd6ecedab48ae7b55b5
+%global        git_revision 825b4ec338e82869dc656c7041ab2483b6c22479
 %global        git_revision_short %(echo %{git_revision} | head -c 7)
 %global        build_timestamp %(date +"%Y%m%d")
 
@@ -137,6 +137,12 @@ BuildArch:     noarch
 %description filesystem
 This package provides some directories which are required by other
 packages that add functionality to Emacs.
+
+%package devel
+Summary: Development header files for Emacs
+
+%description devel
+Development header files for Emacs.
 
 %prep
 %setup -q -n emacs-%{git_revision}
@@ -352,7 +358,13 @@ echo "(setq source-directory \"%{_datadir}/emacs/%{version}/\")" \
 %dir %{_datadir}/emacs/site-lisp
 %dir %{_datadir}/emacs/site-lisp/site-start.d
 
+%files devel
+%{_includedir}/emacs-module.h
+
 %changelog
+* Sun Jan  3 10:58:13 EST 2021 Peter Wu
+- add -devel package
+- git commit 825b4ec338e82869dc656c7041ab2483b6c22479
 * Mon Dec 28 10:42:32 EST 2020 Peter Wu
 - adjust build switches to turn off unused features
 - git commit 5e1416fd0a41c4b7d13d3cd6ecedab48ae7b55b5

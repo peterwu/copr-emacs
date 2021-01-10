@@ -3,7 +3,7 @@
 %global        debug_package %{nil}
 %define        _debugsource_template %{nil}
 
-%global        git_revision 825b4ec338e82869dc656c7041ab2483b6c22479
+%global        git_revision a583c72305530f7d3ecc9ba50eefa70b6ddecdd9
 %global        git_revision_short %(echo %{git_revision} | head -c 7)
 %global        build_timestamp %(date +"%Y%m%d")
 
@@ -176,10 +176,10 @@ export CFLAGS="-DMAIL_USE_LOCKF %{build_cflags}"
 LDFLAGS=-Wl,-z,relro;  export LDFLAGS;
 
 %configure --with-dbus --with-gif --with-jpeg --with-png --with-rsvg --without-xaw3d \
-	   --with-tiff --without-xft --with-xpm --with-x-toolkit=gtk3 --with-gpm=no \
-	   --with-xwidgets --with-modules --with-harfbuzz --with-cairo --with-json \
-	   --without-dbus --without-gconf --without-gsettings --without-toolkit-scroll-bars \
-	   --disable-largefile --without-xim --without-sound --enable-link-time-optimization
+           --with-tiff --without-xft --with-xpm --with-x-toolkit=gtk3 --with-gpm=no \
+           --with-xwidgets --with-modules --with-harfbuzz --with-cairo --with-json \
+           --without-dbus --without-gconf --without-gsettings --without-toolkit-scroll-bars \
+           --disable-largefile --without-xim --without-sound --enable-link-time-optimization
 
 %__make bootstrap
 %{setarch} %make_build
@@ -189,7 +189,7 @@ cd ..
 %__mkdir build-nox && cd build-nox
 %__ln_s ../configure .
 %configure --with-x=no --with-modules --with-json --with-x-toolkit=no --without-xft \
-	   --without-lcms2 --without-rsvg --disable-largefile --enable-link-time-optimization
+           --without-lcms2 --without-rsvg --disable-largefile --enable-link-time-optimization
 %{setarch} %make_build
 cd ..
 
@@ -361,6 +361,8 @@ echo "(setq source-directory \"%{_datadir}/emacs/%{version}/\")" \
 %{_includedir}/emacs-module.h
 
 %changelog
+* Sun Jan 10 15:45:42 EST 2021 Peter Wu
+- git commit a583c72305530f7d3ecc9ba50eefa70b6ddecdd9
 * Sun Jan  3 10:58:13 EST 2021 Peter Wu
 - add -devel package
 - git commit 825b4ec338e82869dc656c7041ab2483b6c22479

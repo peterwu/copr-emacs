@@ -3,7 +3,7 @@
 %global        debug_package %{nil}
 %define        _debugsource_template %{nil}
 
-%global        git_revision 25e1b732947bcba51e457a7168eba6608fb666c0
+%global        git_revision 24b9515da0588aca38a1bce5f615e0cdf7891388
 %global        git_revision_short %(echo %{git_revision} | head -c 7)
 %global        build_timestamp %(date +"%Y%m%d")
 
@@ -361,6 +361,8 @@ echo "(setq source-directory \"%{_datadir}/emacs/%{version}/\")" \
 %{_includedir}/emacs-module.h
 
 %changelog
+* Sun Jan 31 20:12:24 EST 2021 Peter Wu
+- git commit 24b9515da0588aca38a1bce5f615e0cdf7891388
 * Sat Jan 16 17:28:23 EST 2021 Peter Wu
 - git commit 25e1b732947bcba51e457a7168eba6608fb666c0
 * Sun Jan 10 15:45:42 EST 2021 Peter Wu

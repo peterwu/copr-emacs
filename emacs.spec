@@ -3,7 +3,7 @@
 %global        debug_package %{nil}
 %define        _debugsource_template %{nil}
 
-%global        git_revision 24b9515da0588aca38a1bce5f615e0cdf7891388
+%global        git_revision ef122bf45d8ab7f8ec31612ac39fc521039ae19a
 %global        git_revision_short %(echo %{git_revision} | head -c 7)
 %global        build_timestamp %(date +"%Y%m%d")
 
@@ -361,37 +361,52 @@ echo "(setq source-directory \"%{_datadir}/emacs/%{version}/\")" \
 %{_includedir}/emacs-module.h
 
 %changelog
+* Tue Mar 16 11:13:59 EDT 2021 Peter Wu
+- git commit ef122bf45d8ab7f8ec31612ac39fc521039ae19a
+
 * Sun Jan 31 20:12:24 EST 2021 Peter Wu
 - git commit 24b9515da0588aca38a1bce5f615e0cdf7891388
+
 * Sat Jan 16 17:28:23 EST 2021 Peter Wu
 - git commit 25e1b732947bcba51e457a7168eba6608fb666c0
+
 * Sun Jan 10 15:45:42 EST 2021 Peter Wu
 - git commit a583c72305530f7d3ecc9ba50eefa70b6ddecdd9
+
 * Sun Jan  3 10:58:13 EST 2021 Peter Wu
 - add -devel package
 - git commit 825b4ec338e82869dc656c7041ab2483b6c22479
+
 * Mon Dec 28 10:42:32 EST 2020 Peter Wu
 - adjust build switches to turn off unused features
 - git commit 5e1416fd0a41c4b7d13d3cd6ecedab48ae7b55b5
+
 * Fri Dec 25 08:19:00 PM EST 2020 Peter Wu
 - use an emacs.service that has ExecStop
 - git commit 90e40099debaa876273ae560ed8e66985719dd0c
+
 * Thu Dec 24 09:10:13 PM EST 2020 Peter Wu
 - git commit d63ccde966a561756675b9c84b39c724662c82a8
+
 * Fri Dec 18 02:08:58 PM EST 2020 Peter Wu
 - roll back native comp support
 - git commit e417e87f7ac5b19e84d6767af35e7dec65e77492
+
 * Thu Dec 17 05:58:05 PM EST 2020 Peter Wu
 - native comp support
 - git commit 87f6e937995c433825173fb0473a801791d5beac
+
 * Thu Dec 17 05:13:55 PM EST 2020 Peter Wu
 - added more config switches to the nox build, with credits to AUR:emacs-git
 - git commit ddff5d3d879d23f0684b8abe7d923fce4f86ec2e
+
 * Thu Dec 10 2020 Peter Wu
 - inherited from emacs.spec from Fedora build
 - git commit 8ace7700b93c6c0835ddac6633a7ec07daf56225
+
 * Fri Dec  4 18:48:53 EST 2020 Peter Wu <peterwu@hotmail.com>
 - enable LTO
 - git commit 39915c708435cefd1c3eaddeec54d3b365d36515
+
 * Wed Dec  2 11:41:51 EST 2020 Peter Wu <peterwu@hotmail.com>
 - git commit eff6f0c7f123a79d376f5b06c3a946efb797bb03

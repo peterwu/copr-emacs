@@ -177,7 +177,7 @@ LDFLAGS=-Wl,-z,relro;  export LDFLAGS;
 
 %configure --with-dbus --with-gif --with-jpeg --with-png --with-rsvg --without-xaw3d \
            --with-tiff --without-xft --with-xpm --with-x-toolkit=gtk3 --with-gpm=no \
-           --with-xwidgets --with-modules --with-harfbuzz --with-cairo --with-json \
+           --with-modules --with-harfbuzz --with-cairo --with-json \
            --without-dbus --without-gconf --without-gsettings --without-toolkit-scroll-bars \
            --disable-largefile --without-xim --without-sound --enable-link-time-optimization
 
@@ -362,6 +362,7 @@ echo "(setq source-directory \"%{_datadir}/emacs/%{version}/\")" \
 
 %changelog
 * Tue Mar 16 11:13:59 EDT 2021 Peter Wu
+- remove support for xwidgets
 - git commit ef122bf45d8ab7f8ec31612ac39fc521039ae19a
 
 * Sun Jan 31 20:12:24 EST 2021 Peter Wu

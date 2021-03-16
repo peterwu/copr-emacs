@@ -17,6 +17,7 @@ URL:           http://www.gnu.org/software/emacs/
 Source0:       https://github.com/emacs-mirror/emacs/archive/%{git_revision}.tar.gz
 Source1:       emacs.service
 
+BuildRequires: make
 BuildRequires: gcc
 BuildRequires: atk-devel
 BuildRequires: cairo-devel

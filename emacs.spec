@@ -3,7 +3,7 @@
 %global        debug_package %{nil}
 %define        _debugsource_template %{nil}
 
-%global        git_revision ef122bf45d8ab7f8ec31612ac39fc521039ae19a
+%global        git_revision 22910e71e5092250b2134dae07bd8e2a82e4f750
 %global        git_revision_short %(echo %{git_revision} | head -c 7)
 %global        build_timestamp %(date +"%Y%m%d")
 
